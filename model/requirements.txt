@@ -1,0 +1,9 @@
+# requirements.txt
+fastapi
+uvicorn
+tensorflow
+transformers
+Pillow
+numpy
+scikit-learn
+gunicorn

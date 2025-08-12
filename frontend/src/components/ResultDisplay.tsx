@@ -9,7 +9,14 @@ interface ResultDisplayProps {
 }
 
 const ResultDisplay: React.FC<ResultDisplayProps> = ({ userImage, animeFilename, score, onTryAgain }) => {
-  const animeImageUrl = `http://localhost:5001/mal_character_images/${animeFilename}`;
+  // const animeImageUrl = `http://localhost:5001/mal_character_images/${animeFilename}`;
+  const GITHUB_USER = 'KarthikGavini'; // Your GitHub username
+  const GITHUB_REPO = 'anime-doppelganger-assets'; // The name of your image repo
+  const encodedFilename = encodeURIComponent(animeFilename); // e.g. "Abe%20Takaya.jpg"
+  const animeImageUrl = `https://${GITHUB_USER}.github.io/${GITHUB_REPO}/mal_character_images/${encodedFilename}?nocache=${Date.now()}`;
+
+
+
   const displayName = animeFilename.replace(/\.(jpg|jpeg|png)$/i, '');
 
   return (

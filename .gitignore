@@ -1,5 +1,6 @@
 # Python
 __pycache__/
+model/__pycache__/
 *.pyc
 v_env/
 .venv/
@@ -13,11 +14,11 @@ mern-backend/node_modules/
 
 # Large Data & Image Folders
 # anime_embeddings.npy
-anime_embeddings_1.npy
+model/anime_embeddings_1.npy
 # anime_filenames.pkl
-anime_filenames_1.pkl
+model/anime_filenames_1.pkl
 # mal_character_images/
-mal_character_faces_cropped/
+model/mal_character_faces_cropped/
 mern-backend/public/mal_character_images/
 
 # macOS
