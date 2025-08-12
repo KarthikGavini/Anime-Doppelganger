@@ -1,4 +1,4 @@
-# requirements.txt
+# model/requirements.txt
 fastapi
 uvicorn
 tensorflow
@@ -7,3 +7,4 @@ Pillow
 numpy
 scikit-learn
 gunicorn
+tf-keras
