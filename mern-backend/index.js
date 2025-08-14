@@ -7,7 +7,11 @@ import { Client } from '@gradio/client';
 
 // --- 1. INITIALIZE APP & MIDDLEWARE ---
 const app = express();
-app.use(cors()); // Enable CORS
+// app.use(cors()); // Enable CORS
+app.use(cors({
+  origin: "https://anime-doppelganger.vercel.app"
+}));
+
 app.use(express.static('public')); // Serve static files from 'public'
 
 // Set up Multer for in-memory file storage
