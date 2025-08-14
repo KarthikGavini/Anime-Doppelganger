@@ -8,3 +8,4 @@ numpy
 scikit-learn
 gunicorn
 tf-keras
+gradio

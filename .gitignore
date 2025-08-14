@@ -3,6 +3,7 @@ __pycache__/
 model/__pycache__/
 *.pyc
 v_env/
+venv/
 .venv/
 
 # Node.js
