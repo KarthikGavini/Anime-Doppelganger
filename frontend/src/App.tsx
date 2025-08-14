@@ -35,10 +35,11 @@ const App: React.FC = () => {
     formData.append('image', file);
 
     try {
-      const response = await axios.post<ApiResult>(
-        'https://anime-doppelganger-api.onrender.com/api/find',
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/find`,
         formData
       );
+
 
       setResult(response.data);
     } catch (err) {
