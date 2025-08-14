@@ -1,12 +1,6 @@
 // frontend/src/components/ResultDisplay.tsx
 import React from 'react';
 
-// interface ResultDisplayProps {
-//   userImage: string;
-//   animeFilename: string;
-//   score: string;
-//   onTryAgain: () => void;
-// }
 interface ResultDisplayProps {
   userImage: string;
   animeImage: string; // new prop: direct URL from HF
@@ -16,18 +10,12 @@ interface ResultDisplayProps {
 
 
 const ResultDisplay: React.FC<ResultDisplayProps> = ({ userImage, animeImage, message, onTryAgain }) => {
-  // const animeImageUrl = `http://localhost:5001/mal_character_images/${animeFilename}`;
-  // const GITHUB_USER = 'KarthikGavini'; // Your GitHub username
-  // const GITHUB_REPO = 'anime-doppelganger-assets'; // The name of your image repo
-  // const encodedFilename = encodeURIComponent(animeFilename); // e.g. "Abe%20Takaya.jpg"
-  // const animeImageUrl = `https://${GITHUB_USER}.github.io/${GITHUB_REPO}/mal_character_images/${encodedFilename}?nocache=${Date.now()}`;
   const animeImageUrl = animeImage; // just use the URL returned from backend
 
-
-
-
   // const displayName = animeFilename.replace(/\.(jpg|jpeg|png)$/i, '');
-  const displayName = message ? message.split("\n")[0].replace("Match: ", "") : "";
+  const displayName = message
+    ? message.split("\n")[0].replace("Match: ", "").replace(/\.(jpg|jpeg|png)$/i, '')
+    : "";
   const score = message ? message.split("\n")[1].replace("Score: ", "") : "";
 
 
@@ -37,11 +25,11 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ userImage, animeImage, me
         {/* User's Photo Card */}
         <div className="flex flex-col items-center animate-slide-in-left">
           <h2 className="text-3xl font-bold mb-4 text-gray-300">You</h2>
-          <img 
-            src={userImage} 
-            alt="Your submission" 
+          <img
+            src={userImage}
+            alt="Your submission"
             // ✅ Bigger size and new shape
-            className="w-56 h-56 md:w-80 md:h-80 rounded-3xl object-cover border-4 border-gray-600 shadow-lg" 
+            className="w-56 h-56 md:w-80 md:h-80 rounded-3xl object-cover border-4 border-gray-600 shadow-lg"
           />
         </div>
 
@@ -51,11 +39,11 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ userImage, animeImage, me
         {/* Anime Twin Card */}
         <div className="flex flex-col items-center animate-slide-in-right" style={{ animationDelay: '400ms' }}>
           <h2 className="text-3xl font-bold mb-4 text-cyan-400">Your Twin</h2>
-          <img 
-            src={animeImageUrl} 
-            alt={displayName} 
+          <img
+            src={animeImageUrl}
+            alt={displayName}
             // ✅ Bigger size and new shape
-            className="w-56 h-56 md:w-80 md:h-80 rounded-3xl object-cover border-4 border-cyan-400 shadow-lg" 
+            className="w-56 h-56 md:w-80 md:h-80 rounded-3xl object-cover border-4 border-cyan-400 shadow-lg"
           />
         </div>
       </div>

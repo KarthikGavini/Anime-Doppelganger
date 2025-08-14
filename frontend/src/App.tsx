@@ -5,10 +5,6 @@ import Uploader from './components/Uploader';
 import ResultDisplay from './components/ResultDisplay';
 import Loader from './components/Loader';
 
-// interface ApiResult {
-//   lookalike_filename: string;
-//   score: string;
-// }
 interface ApiResult {
   message: string;     // text result from Hugging Face
   image_url: string;   // URL of generated anime twin image
@@ -16,7 +12,7 @@ interface ApiResult {
 
 
 const App: React.FC = () => {
-  const [userImage, setUserImage] = useState<File | null>(null);
+  const [_userImage, setUserImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [result, setResult] = useState<ApiResult | null>(null);
   const [loading, setLoading] = useState(false);
@@ -29,7 +25,7 @@ const App: React.FC = () => {
     reader.readAsDataURL(file);
     handleSubmit(file);
   };
-  
+
   const handleSubmit = async (file: File) => {
     setLoading(true);
     setError(null);
@@ -39,7 +35,11 @@ const App: React.FC = () => {
     formData.append('image', file);
 
     try {
-      const response = await axios.post<ApiResult>('http://localhost:5001/api/find', formData);
+      const response = await axios.post<ApiResult>(
+        'https://anime-doppelganger-api.onrender.com/api/find',
+        formData
+      );
+
       setResult(response.data);
     } catch (err) {
       setError("Something went wrong. Please try another image.");
@@ -61,7 +61,7 @@ const App: React.FC = () => {
     if (error) return <p className="text-red-400 text-center mt-4 text-xl">{error}</p>;
     if (result && preview) {
       return (
-        <ResultDisplay 
+        <ResultDisplay
           userImage={preview}
           // animeFilename={result.lookalike_filename}
           animeImage={result.image_url}
@@ -84,7 +84,7 @@ const App: React.FC = () => {
           Uncover Your Anime Alter Ego with AI
         </p>
       </header>
-      
+
       <main className="w-full">
         {renderContent()}
       </main>
