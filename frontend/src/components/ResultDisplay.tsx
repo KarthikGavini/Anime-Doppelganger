@@ -1,23 +1,35 @@
 // frontend/src/components/ResultDisplay.tsx
 import React from 'react';
 
+// interface ResultDisplayProps {
+//   userImage: string;
+//   animeFilename: string;
+//   score: string;
+//   onTryAgain: () => void;
+// }
 interface ResultDisplayProps {
   userImage: string;
-  animeFilename: string;
-  score: string;
+  animeImage: string; // new prop: direct URL from HF
+  message?: string;   // optional: text from HF
   onTryAgain: () => void;
 }
 
-const ResultDisplay: React.FC<ResultDisplayProps> = ({ userImage, animeFilename, score, onTryAgain }) => {
+
+const ResultDisplay: React.FC<ResultDisplayProps> = ({ userImage, animeImage, message, onTryAgain }) => {
   // const animeImageUrl = `http://localhost:5001/mal_character_images/${animeFilename}`;
-  const GITHUB_USER = 'KarthikGavini'; // Your GitHub username
-  const GITHUB_REPO = 'anime-doppelganger-assets'; // The name of your image repo
-  const encodedFilename = encodeURIComponent(animeFilename); // e.g. "Abe%20Takaya.jpg"
-  const animeImageUrl = `https://${GITHUB_USER}.github.io/${GITHUB_REPO}/mal_character_images/${encodedFilename}?nocache=${Date.now()}`;
+  // const GITHUB_USER = 'KarthikGavini'; // Your GitHub username
+  // const GITHUB_REPO = 'anime-doppelganger-assets'; // The name of your image repo
+  // const encodedFilename = encodeURIComponent(animeFilename); // e.g. "Abe%20Takaya.jpg"
+  // const animeImageUrl = `https://${GITHUB_USER}.github.io/${GITHUB_REPO}/mal_character_images/${encodedFilename}?nocache=${Date.now()}`;
+  const animeImageUrl = animeImage; // just use the URL returned from backend
 
 
 
-  const displayName = animeFilename.replace(/\.(jpg|jpeg|png)$/i, '');
+
+  // const displayName = animeFilename.replace(/\.(jpg|jpeg|png)$/i, '');
+  const displayName = message ? message.split("\n")[0].replace("Match: ", "") : "";
+  const score = message ? message.split("\n")[1].replace("Score: ", "") : "";
+
 
   return (
     <div className="w-full max-w-5xl mx-auto"> {/* Increased max-width for larger layout */}

@@ -5,10 +5,15 @@ import Uploader from './components/Uploader';
 import ResultDisplay from './components/ResultDisplay';
 import Loader from './components/Loader';
 
+// interface ApiResult {
+//   lookalike_filename: string;
+//   score: string;
+// }
 interface ApiResult {
-  lookalike_filename: string;
-  score: string;
+  message: string;     // text result from Hugging Face
+  image_url: string;   // URL of generated anime twin image
 }
+
 
 const App: React.FC = () => {
   const [userImage, setUserImage] = useState<File | null>(null);
@@ -58,8 +63,10 @@ const App: React.FC = () => {
       return (
         <ResultDisplay 
           userImage={preview}
-          animeFilename={result.lookalike_filename}
-          score={result.score}
+          // animeFilename={result.lookalike_filename}
+          animeImage={result.image_url}
+          // score={result.score}
+          message={result.message}
           onTryAgain={handleTryAgain}
         />
       );
